@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraping Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Mission to Scrape Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Latest Mars News</h2>
+            <h3>{{ mars_data.News_Title }}</h3>
+            <p>{{ mars_data.Paragraph_Text }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Featured Mars Image</h2>
+            <img src="https://media.npr.org/assets/img/2019/02/15/oppyconcept-7470fec47830d38c328ddf46b81eeeabc8e36c7c-s1500-c85.jpg"
+                alt="Baby Oppy" width="600" height="450">
+            <p>Coulnd't get the featured image of Mars of the day because I don't know how to use splinter.
+                So, here's a picture of the Mars Rover Opportunity, or commonly known as Oppy, in honor of his 15 years of incredible discoveries.
+                He was the goodest boy and will be missed dearly.
+            </p>
+        </div>
+   
+        <div class="col-md-4">
+            <h4>Current Weather on Mars</h4>
+            <p>{{ mars_data.Mars_Weather }}</p>
+        </div>   
+
+        <div class="col-md-4">
+            <h4>Mars Fun Facts</h4>
+            <div style="max-width: 450px; max-height: 150px; font-size: 15px; margin-bottom:65px;">
+                {{mars_data.Mars_Facts|safe}}
+                <a href="{{ mars_data.Mars_Facts }}"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:80px;">
+        <h2 class="text-center">Mars Hemispheres</h2>
+        {% for hemisphere in mars_data.Mars_Hemispheres %}
+            <div class="col-md-6">
+                <div class="thumbnail">
+                    <img src="{{ hemisphere['img_url'] }}" alt="mars hemispheres">
+                </div>
+                <h4>{{ hemisphere['title'] }}</h4>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
